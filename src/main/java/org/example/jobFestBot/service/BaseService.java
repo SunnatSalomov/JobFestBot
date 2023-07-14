@@ -10,9 +10,6 @@ public interface BaseService<T> {
     T add(T t);
     List<T> getAllList();
     T getById(String id);
-
-    Category getById(String id);
-
     void delete(String id);
     T update(T t);
 
