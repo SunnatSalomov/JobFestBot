@@ -17,4 +17,8 @@ public class User {
     private String lastName;
     private String phoneNumber;
     private String email;
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
 }
