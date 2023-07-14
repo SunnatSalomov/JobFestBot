@@ -25,8 +25,6 @@ public class UserService implements BaseService<User> {
         FileUtils.write(new File(path),valueAsString);
         return user;
 
-
-
     }
 
     private void existUser(User user, List<User> users) {
@@ -59,5 +57,9 @@ public class UserService implements BaseService<User> {
     @Override
     public User update(User user) {
         return null;
+    }
+
+    public boolean existByChatId(Long chatId) {
+        return false;
     }
 }
