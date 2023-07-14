@@ -1,24 +1,23 @@
 package org.example.jobFestBot.service;
 
-import org.example.jobFestBot.model.User;
+import org.example.jobFestBot.model.Category;
 
 import java.util.List;
 import java.util.UUID;
 
-public class UserService implements BaseService<User> {
-
+public class CategoryService implements BaseService<Category> {
     @Override
-    public User add(User user) {
+    public Category add(Category category) {
         return null;
     }
 
     @Override
-    public List<User> getAllList() {
+    public List<Category> getAllList() {
         return null;
     }
 
     @Override
-    public User getById(UUID id) {
+    public Category getById(UUID id) {
         return null;
     }
 
@@ -28,7 +27,7 @@ public class UserService implements BaseService<User> {
     }
 
     @Override
-    public User update(User user) {
+    public Category update(Category category) {
         return null;
     }
 }
