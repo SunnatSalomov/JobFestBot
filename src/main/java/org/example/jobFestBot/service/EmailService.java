@@ -1,5 +1,5 @@
 package org.example.jobFestBot.service;
 
-public class EmailService implements BaseService{
+public class EmailService {
 
 }
