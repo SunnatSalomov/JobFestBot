@@ -20,7 +20,6 @@ public class UserService implements BaseService<User> {
         List<User> users = getUser();
         existUser(user,users);
         user.setId(UUID.randomUUID().toString());
-        user.setCreatedDate(String.valueOf(new Date()));
         users.add(user);
         String valueAsString = objectMapper.writeValueAsString(user);
         FileUtils.write(new File(path),valueAsString);
