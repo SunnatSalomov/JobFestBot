@@ -47,8 +47,4 @@ public class EmailService {
         });
     }
 
-    public static void main(String[] args) {
-        String s = getGenerateNumberSendGmailToMessage("fayzullayevnodir67@gmail.com");
-        System.out.println(s);
-    }
 }
