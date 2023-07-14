@@ -17,12 +17,12 @@ public class JobService implements BaseService<Job> {
     }
 
     @Override
-    public Job getById(UUID id) {
+    public Job getById(String id) {
         return null;
     }
 
     @Override
-    public void delete(UUID id) {
+    public void delete(String id) {
 
     }
 
