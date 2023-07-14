@@ -25,7 +25,6 @@ public class JobService implements BaseService<Job> {
     public void delete(String id) {
 
     }
-
     @Override
     public Job update(Job job) {
         return null;
