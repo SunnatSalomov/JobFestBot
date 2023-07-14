@@ -3,10 +3,9 @@ package org.example.jobFestBot.service;
 import org.example.jobFestBot.model.Job;
 
 import java.util.List;
-import java.util.UUID;
 
 public class JobService implements BaseService<Job> {
-    @Override
+        @Override
     public Job add(Job job) {
         return null;
     }
@@ -15,7 +14,6 @@ public class JobService implements BaseService<Job> {
     public List<Job> getAllList() {
         return null;
     }
-
     @Override
     public Job getById(String id) {
         return null;
