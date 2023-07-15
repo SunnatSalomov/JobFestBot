@@ -10,7 +10,6 @@ import java.io.File;
 import java.nio.file.Files;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 public class UserService implements BaseService<User> {
@@ -25,6 +24,8 @@ public class UserService implements BaseService<User> {
         String valueAsString = objectMapper.writeValueAsString(user);
         FileUtils.write(new File(path),valueAsString);
         return user;
+
+
 
     }
 
