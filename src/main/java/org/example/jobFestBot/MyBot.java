@@ -57,7 +57,6 @@ public class MyBot extends TelegramLongPollingBot {
         s.setReplyMarkup(r);
         try {
             execute(s);
-
         } catch (Exception e) {
             e.printStackTrace();
         }

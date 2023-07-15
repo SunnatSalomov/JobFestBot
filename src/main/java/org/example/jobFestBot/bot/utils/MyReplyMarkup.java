@@ -1,5 +1,9 @@
 package org.example.jobFestBot.bot.utils;
 
+import org.telegram.telegrambots.meta.api.methods.AnswerInlineQuery;
+import org.telegram.telegrambots.meta.api.objects.inlinequery.inputmessagecontent.InputTextMessageContent;
+import org.telegram.telegrambots.meta.api.objects.inlinequery.result.*;
+import org.telegram.telegrambots.meta.api.objects.inlinequery.result.InlineQueryResultArticle;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
@@ -9,6 +13,8 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.telegram.telegrambots.meta.api.objects.inlinequery.result.InlineQueryResultArticle.*;
 
 public class MyReplyMarkup {
 
@@ -51,6 +57,20 @@ public class MyReplyMarkup {
         if (inline.size() % 2 != 0) {
             rows.add(row);
         }
+        inlineKeyboardMarkup.setKeyboard(rows);
+        return inlineKeyboardMarkup;
+    }
+
+    public ReplyKeyboard createInlineKeyboardMarkupURL(String inline) {
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rows = new ArrayList<>();
+        List<InlineKeyboardButton> row = new ArrayList<>();
+        InlineKeyboardButton keyboardButton = new InlineKeyboardButton();
+        keyboardButton.setText(inline);
+        keyboardButton.setCallbackData("nn");
+        keyboardButton.setUrl("https://getmatch.ru/vacancies?p=1&sa=250000&l=moscow&l=saints_p&pl=python&sp=dev_ops&pa=all");
+        row.add(keyboardButton);
+        rows.add(row);
         inlineKeyboardMarkup.setKeyboard(rows);
         return inlineKeyboardMarkup;
     }
