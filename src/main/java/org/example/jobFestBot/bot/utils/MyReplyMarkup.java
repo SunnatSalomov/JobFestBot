@@ -87,7 +87,12 @@ public class MyReplyMarkup {
         keyboardRows.add(row);
 
         replyKeyboardMarkup.setOneTimeKeyboard(true);
+        replyKeyboardMarkup.setResizeKeyboard(true);
         replyKeyboardMarkup.setKeyboard(keyboardRows);
         return replyKeyboardMarkup;
+    }
+
+        public ReplyKeyboard crateInlineCallbackData(String callbackData){
+        return null;
     }
 }

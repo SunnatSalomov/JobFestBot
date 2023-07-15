@@ -25,47 +25,48 @@ public class MyBot extends TelegramLongPollingBot {
     private static UserConverter userConverter = new UserConverter();
     private static MyReplyMarkup replyMarkup = new MyReplyMarkup();
     public static final String pathCategory = "src/main/resources/category.json";
-   public static final List<String> category = List.of("VACANCY", "TO ANNOUNCE", "INFO");
-   public static final List<String> vacancies = List.of("Developer","Network Administrator",
-                   "Database Administrator","Cybersecurity Specialist","Data Analyst");
+    public static final List<String> category = List.of("VACANCY", "TO ANNOUNCE", "INFO");
+    public static final List<String> vacancies = List.of("Developer", "Network Administrator",
+            "Database Administrator", "Cybersecurity Specialist", "Data Analyst");
+
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage()) {
 
             Long chatId = update.getMessage().getChatId();
             boolean exist = userService.existByChatId(chatId);
-            if (update.getMessage().hasText()){
+            if (update.getMessage().hasText()) {
                 String text = update.getMessage().getText();
-            if (!exist) {
+                if (exist) {
                     ReplyKeyboard shareContact = replyMarkup.shareContact("Shate contact");
                     myExecute(chatId, "Enter your phone number", shareContact);
                     return;
-            }
+                }
                 if (StringUtils.equals(text, "/start")) {
                     baseMenu(chatId, "Welcome to our bot !");
                 }
-                if (StringUtils.equals(text,category.get(0))){
+                if (StringUtils.equals(text, category.get(0))) {
                     System.out.println(category.get(0));
-                    myExecute("src/main/resources/image_1.jpg",chatId,"Please select the profession you need",replyMarkup.createInlineKeyboardMarkup(vacancies));
+                    myExecute("src/main/resources/image_1.jpg", chatId, "Please select the profession you need", replyMarkup.createInlineKeyboardMarkup(vacancies));
                     return;
                 }
-                if (StringUtils.equals(text,category.get(1))){
+                if (StringUtils.equals(text, category.get(1))) {
 
                 }
-                if (StringUtils.equals(text,category.get(2))){
-               myExecute(chatId,"",null);
+                if (StringUtils.equals(text, category.get(2))) {
+                    myExecute(chatId, "", null);
                 }
             }
             System.out.println(update.getMessage().hasReplyMarkup());
             if (update.getMessage().hasContact()) {
                 User user = userConverter.convertToEntity(update.getMessage().getContact());
                 userService.add(user);
-                baseMenu(chatId,"successfully registered");
-                return;
+                baseMenu(chatId, "successfully registered");
             }
-            }
-
         }
+
+    }
+
     private void myExecute(Long chatId, String message, ReplyKeyboard r) {
         SendMessage s = new SendMessage();
         s.setChatId(chatId);
@@ -77,6 +78,7 @@ public class MyBot extends TelegramLongPollingBot {
             e.printStackTrace();
         }
     }
+
     private void myExecute(String image, Long chatId, String message, ReplyKeyboard r) {
         SendPhoto s = new SendPhoto();
         s.setChatId(chatId);
@@ -103,7 +105,8 @@ public class MyBot extends TelegramLongPollingBot {
             e.printStackTrace();
         }
     }
-    private void baseMenu(Long id, String text){
+
+    private void baseMenu(Long id, String text) {
         myExecute(id, text, replyMarkup.createReplyKeyboardMarkup(category));
     }
 
