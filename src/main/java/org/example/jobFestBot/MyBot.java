@@ -33,6 +33,7 @@ public class MyBot extends TelegramLongPollingBot {
 
     public static CategoryService categoryService = new CategoryService();
 
+
     @Override
     public void onUpdateReceived(Update update) {
 
@@ -47,20 +48,20 @@ public class MyBot extends TelegramLongPollingBot {
                 return;
             }
             if (!exist) {
-                myExecute(chatId, "Welcome to our bot !", replyMarkup.shareContact());
+                myExecute(chatId, "Welcome to our bot !", replyMarkup.shareContact("SHare contact "));
                 return;
             }
             if (StringUtils.equals(update.getMessage().getText(), "/start")) {
                 myExecute(chatId, "Welcome to our bot !", replyMarkup.createReplyKeyboardMarkup(List.of("SEARCH JOB", "TO ANNOUNCE", "INFO")));
             } else if (StringUtils.equalsAnyIgnoreCase(update.getMessage().getText(), "SEARCH JOB")) {
-                myExecute(chatId, "choose category", replyMarkup.createInlineKeyboardMarkup((String) null));
+                myExecute(chatId, "choose category", replyMarkup.createInlineKeyboardMarkup(( null)));
             }
         } else if (update.hasCallbackQuery()) {
             String data = update.getCallbackQuery().getData();
             Long chatId = update.getCallbackQuery().getMessage().getChatId();
             Integer messageId = update.getCallbackQuery().getMessage().getMessageId();
-            myEdite(chatId, messageId, " child categories ", replyMarkup.createInlineKeyboardMarkup(data));
-            // myExecute(chatId, createInlineKeyboardMarkup(categories, data));
+            //myEdite(chatId, messageId, " child categories ", replyMarkup.createInlineKeyboardMarkup(data));
+            //myExecute(chatId, replyMarkup.createInlineKeyboardMarkup(categories));
         }
     }
 

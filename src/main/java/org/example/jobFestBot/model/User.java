@@ -13,8 +13,10 @@ import java.util.UUID;
 @Builder
 public class User {
     private String id;
+    private Long chatId;
     private String firstName;
     private String lastName;
     private String phoneNumber;
+    private String createdDate;
     private String email;
 }

@@ -10,6 +10,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class UserService implements BaseService<User> {
@@ -60,6 +61,10 @@ public class UserService implements BaseService<User> {
     }
 
     public boolean existByChatId(Long chatId) {
-        return false;
+        List<User> users = getUser();
+        return users.stream().anyMatch(user -> Objects.equals(user.getChatId(), chatId));
+
+
+
     }
 }
