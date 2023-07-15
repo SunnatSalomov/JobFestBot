@@ -5,7 +5,8 @@ import org.telegram.telegrambots.meta.api.objects.Contact;
 
 public class UserConverter {
     public User convertToEntity(Contact contact) {
-        return null;
-
+        User user = new User(contact.getFirstName(), contact.getLastName(), contact.getPhoneNumber(), null);
+        user.setChatId(contact.getUserId());
+        return user;
     }
 }
