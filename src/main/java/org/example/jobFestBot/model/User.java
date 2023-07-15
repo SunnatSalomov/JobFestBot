@@ -10,6 +10,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class User {
     private String id;
+    private Long chatId;
     private String firstName;
     private String lastName;
     private String phoneNumber;

@@ -35,9 +35,7 @@ public class EmailService {
             e.printStackTrace();
             return null;
         }
-
     }
-
     private static Session getInstance(Properties properties, String username, String password) {
         return Session.getInstance(properties, new Authenticator() {
             @Override
@@ -46,5 +44,4 @@ public class EmailService {
             }
         });
     }
-
 }

@@ -1,9 +1,17 @@
 package org.example;
 
-public class Main {
-    public static void main(String[] args) {
+import org.example.jobFestBot.MyBot;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
-        System.out.println("Hello world!");
+public class Main {
+    public static void main(String[] args) throws TelegramApiException {
+
+        TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
+        telegramBotsApi.registerBot(new MyBot());
+
+
 
     }
 }
