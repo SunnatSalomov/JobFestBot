@@ -31,37 +31,36 @@ public class MyBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage()) {
-
             Long chatId = update.getMessage().getChatId();
             boolean exist = userService.existByChatId(chatId);
             if (update.getMessage().hasText()){
-                String text = update.getMessage().getText();
+
             if (!exist) {
-                    ReplyKeyboard shareContact = replyMarkup.shareContact("Shate contact");
-                    myExecute(chatId, "Enter your phone number", shareContact);
+                    myExecute(chatId, "Enter your phone number", replyMarkup.shareContact("Shate contact"));
                     return;
             }
-                if (StringUtils.equals(text, "/start")) {
-                    baseMenu(chatId, "Welcome to our bot !");
+                if (update.getMessage().hasContact()) {
+                    User user = userConverter.convertToEntity(update.getMessage().getContact());
+                    userService.add(user);
+                    baseMenu(chatId,"successfully registered");
+                    return;
                 }
-                if (StringUtils.equals(text,category.get(0))){
-                    System.out.println(category.get(0));
+                String text = update.getMessage().getText();
+                if (StringUtils.equals(text, "/start")){
+                    baseMenu(chatId,"Choose category");
+                }
+                if (StringUtils.equals(text,category.get(0))) {
                     myExecute("src/main/resources/image_1.jpg",chatId,"Please select the profession you need",replyMarkup.createInlineKeyboardMarkup(vacancies));
                     return;
                 }
-                if (StringUtils.equals(text,category.get(1))){
 
+                if (StringUtils.equals(text,category.get(1))) {
                 }
-                if (StringUtils.equals(text,category.get(2))){
-               myExecute(chatId,"",null);
+
+                if (StringUtils.equals(text,category.get(2))) {
+               myExecute("src/main/resources/image_2.jpg", chatId,"Through this bot you can find several" +
+                       " available vacancies in the IT field. Start your career with us. Don't be afraid to dream!!!",null);
                 }
-            }
-            System.out.println(update.getMessage().hasReplyMarkup());
-            if (update.getMessage().hasContact()) {
-                User user = userConverter.convertToEntity(update.getMessage().getContact());
-                userService.add(user);
-                baseMenu(chatId,"successfully registered");
-                return;
             }
             }
 
