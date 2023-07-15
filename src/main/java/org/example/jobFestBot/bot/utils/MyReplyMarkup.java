@@ -36,7 +36,6 @@ public class MyReplyMarkup {
 
     public ReplyKeyboard createInlineKeyboardMarkup(List<String> inline) {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-
         List<List<InlineKeyboardButton>> rows = new ArrayList<>();
         List<InlineKeyboardButton> row = new ArrayList<>();
         for (int i = 1; i <= inline.size(); i++) {
@@ -52,7 +51,6 @@ public class MyReplyMarkup {
         if (inline.size() % 2 != 0) {
             rows.add(row);
         }
-
         inlineKeyboardMarkup.setKeyboard(rows);
         return inlineKeyboardMarkup;
     }

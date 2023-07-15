@@ -7,9 +7,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.example.jobFestBot.model.User;
 
 import java.io.File;
-import java.nio.file.Files;
-import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class UserService implements BaseService<User> {
@@ -24,9 +23,6 @@ public class UserService implements BaseService<User> {
         String valueAsString = objectMapper.writeValueAsString(user);
         FileUtils.write(new File(path),valueAsString);
         return user;
-
-
-
     }
 
     private void existUser(User user, List<User> users) {
@@ -64,8 +60,6 @@ public class UserService implements BaseService<User> {
     public boolean existByChatId(Long chatId) {
         List<User> users = getUser();
         return users.stream().anyMatch(user -> Objects.equals(user.getChatId(), chatId));
-
-
 
     }
 }
