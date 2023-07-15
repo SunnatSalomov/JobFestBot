@@ -1,5 +1,10 @@
 package org.example.jobFestBot.model;
+import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
+@AllArgsConstructor
+@Getter
 public enum Region {
     ANDIJON("Andijon viloyati"),
     BUXORO("Buxoro viloyati"),
@@ -15,14 +20,7 @@ public enum Region {
     SURXONDARYO("Surxondaryo viloyati"),
     TOSHKENT("Toshkent viloyati");
 
+    @JsonValue
     private final String nomi;
 
-
-    Region(String nomi) {
-        this.nomi = nomi;
-    }
-
-    public String getNomi() {
-        return nomi;
-    }
 }
