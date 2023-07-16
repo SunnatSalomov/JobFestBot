@@ -1,10 +1,15 @@
 package org.example.jobFestBot;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.example.jobFestBot.bot.utils.MyReplyMarkup;
 import org.example.jobFestBot.bot.utils.UserConverter;
+import org.example.jobFestBot.model.Vacancy;
 import org.example.jobFestBot.model.User;
 import org.example.jobFestBot.service.BardService;
+import org.example.jobFestBot.service.CategoryService;
+import org.example.jobFestBot.service.FileUtils;
 import org.example.jobFestBot.service.UserService;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -16,7 +21,8 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 
 import java.io.File;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 
 import static org.example.jobFestBot.bot.BotConstants.TOKEN;
 import static org.example.jobFestBot.bot.BotConstants.USERNAME;
@@ -28,8 +34,9 @@ public class MyBot extends TelegramLongPollingBot {
     private static MyReplyMarkup replyMarkup = new MyReplyMarkup();
     public static final String pathCategory = "src/main/resources/category.json";
     public static final List<String> category = List.of("VACANCY", "Share your doubts", "INFO");
-    public static final List<String> vacancies = List.of("Developer", "Network Administrator",
-            "Database Administrator", "Cybersecurity Specialist", "Data Analyst");
+   private static CategoryService categoryService = new CategoryService();
+   public static final List<Vacancy> vacancies = categoryService.getAllList();
+
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage()) {
@@ -73,7 +80,6 @@ public class MyBot extends TelegramLongPollingBot {
                 }
             }
         }
-
     }
 
     private void myExecute(Long chatId, String message, ReplyKeyboard r) {
@@ -138,5 +144,20 @@ public class MyBot extends TelegramLongPollingBot {
     @Override
     public String getBotToken() {
         return TOKEN;
+    }
+
+    public static void main(String[] args) throws IOException {
+
+        Vacancy category1 = new Vacancy(UUID.randomUUID(), "Developer", UUID.randomUUID());
+        Vacancy category2 = new Vacancy(UUID.randomUUID(), "Network Administrator", UUID.randomUUID());
+        Vacancy category3 = new Vacancy(UUID.randomUUID(), "Database Administrator", UUID.randomUUID());
+        Vacancy category4 = new Vacancy(UUID.randomUUID(), "Cybersecurity Specialist", UUID.randomUUID());
+        Vacancy category5 = new Vacancy(UUID.randomUUID(), "Data Analyst", UUID.randomUUID());
+        List<Vacancy> vacancies = new ArrayList<>();
+        Collections.addAll(vacancies, category1,category2,category3,category4,category5);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String writeValueAsString = objectMapper.writeValueAsString(vacancies);
+
+        FileUtils.write(pathCategory,writeValueAsString);
     }
 }

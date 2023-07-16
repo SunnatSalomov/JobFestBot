@@ -2,6 +2,7 @@ package org.example.jobFestBot.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.UUID;
@@ -9,8 +10,10 @@ import java.util.UUID;
 @Data
 @ToString
 @AllArgsConstructor
-public class Category {
-    private String  id;
+@NoArgsConstructor
+public class Vacancy {
+
+    private UUID id;
     private String name;
     private UUID parentId;
 }
