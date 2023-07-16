@@ -1,1 +1,82 @@
-[{"id":"d8cf3196-17e3-4862-b19c-e15d9db74f80","name":"Developer","parentId":"."},{"id":"311106cf-3910-4b87-8790-7dae5c515d56","name":"Network Administrator","parentId":"."},{"id":"3a5b0610-62c6-4083-af9f-d7870aaa9c46","name":"Database Administrator","parentId":"."},{"id":"bae5a13a-67e2-4b20-9ec4-6bcfc615c4a0","name":"Cybersecurity Specialist","parentId":"."},{"id":"a55d38a0-02e0-426b-b3cc-c62f6a123e5a","name":"ALL VACANCIES","parentId":"."},{"id":"5b8ccf4a-7782-4bf1-a306-4c0fe3fd5066","name":"JAVA","parentId":"d8cf3196-17e3-4862-b19c-e15d9db74f80"},{"id":"1e8a3971-60a3-4348-af43-eef6d498aae5","name":"Swift","parentId":"d8cf3196-17e3-4862-b19c-e15d9db74f80"},{"id":"0d9600ea-28ae-48f2-926d-0cf414705a14","name":"Python","parentId":"d8cf3196-17e3-4862-b19c-e15d9db74f80"},{"id":"cb2d554c-5552-47cb-84d4-3759749ed7f9","name":"PHP","parentId":"d8cf3196-17e3-4862-b19c-e15d9db74f80"},{"id":"16014f8f-ca48-449c-9ed5-5d6c5201f1ea","name":".NET","parentId":"d8cf3196-17e3-4862-b19c-e15d9db74f80"},{"id":"e2d425d2-90bc-43f4-bc6d-b6e409fb563b","name":"Network design","parentId":"311106cf-3910-4b87-8790-7dae5c515d56"},{"id":"3a245ad1-182b-4262-853a-49fd184a998b","name":"Network security","parentId":"311106cf-3910-4b87-8790-7dae5c515d56"},{"id":"748c08f7-bf97-4340-8cf0-4865cc94c911","name":"Network maintenance","parentId":"311106cf-3910-4b87-8790-7dae5c515d56"},{"id":"3057fe93-9aed-4ec9-9926-8b6dd1ce735c","name":"Data cleaning","parentId":"3a5b0610-62c6-4083-af9f-d7870aaa9c46"},{"id":"b7390ca7-7f1c-488c-844c-6d3c03ab3262","name":"Data analysis","parentId":"3a5b0610-62c6-4083-af9f-d7870aaa9c46"},{"id":"248cf71a-b010-44a6-8332-e06142f9e686","name":"Database designer","parentId":"3a5b0610-62c6-4083-af9f-d7870aaa9c46"}]
+[
+  {
+    "id": "809aac62-5b35-47a9-9c38-d78501cb0a11",
+    "name": "Developer",
+    "parentId": "."
+  },
+  {
+    "id": "d7aede69-274f-4e53-a5e8-9e728a8ef395",
+    "name": "Network Administrator",
+    "parentId": "."
+  },
+  {
+    "id": "c4c1c8ee-aff7-4b4d-867f-a1a171b0ee01",
+    "name": "Database Administrator",
+    "parentId": "."
+  },
+  {
+    "id": "4b1b9f43-a6cc-464f-b143-052594902df9",
+    "name": "Cybersecurity Specialist",
+    "parentId": "."
+  },
+  {
+    "id": "c0020700-6245-4d85-943a-97dc515ea4da",
+    "name": "ALL VACANCIES",
+    "parentId": "."
+  },
+  {
+    "id": "bebd1b0c-8916-49d5-a837-d14843cafe13",
+    "name": "JAVA",
+    "parentId": "809aac62-5b35-47a9-9c38-d78501cb0a11"
+  },
+  {
+    "id": "047fee21-1e7b-4c49-944a-612388b8cda8",
+    "name": "Swift",
+    "parentId": "809aac62-5b35-47a9-9c38-d78501cb0a11"
+  },
+  {
+    "id": "99360d8a-637d-4476-8c64-5f797ad120cb",
+    "name": "Python",
+    "parentId": "809aac62-5b35-47a9-9c38-d78501cb0a11"
+  },
+  {
+    "id": "c810394b-5fc8-438f-b8e7-a7cac0c51420",
+    "name": "PHP",
+    "parentId": "809aac62-5b35-47a9-9c38-d78501cb0a11"
+  },
+  {
+    "id": "eb8d1791-ba59-4472-81e6-7bbc261a972d",
+    "name": ".NET",
+    "parentId": "809aac62-5b35-47a9-9c38-d78501cb0a11"
+  },
+  {
+    "id": "d3bb0d58-3b0d-4000-8334-5f601dc889e1",
+    "name": "Network design",
+    "parentId": "d7aede69-274f-4e53-a5e8-9e728a8ef395"
+  },
+  {
+    "id": "17af1d27-1f83-4803-bdf8-7bfdef530a54",
+    "name": "Network security",
+    "parentId": "d7aede69-274f-4e53-a5e8-9e728a8ef395"
+  },
+  {
+    "id": "89241875-90b8-405c-bedc-34b3a2ae1a51",
+    "name": "Network maintenance",
+    "parentId": "d7aede69-274f-4e53-a5e8-9e728a8ef395"
+  },
+  {
+    "id": "d0c8b20e-fefe-4db9-871e-2c7d5e1fc68e",
+    "name": "Data cleaning",
+    "parentId": "c4c1c8ee-aff7-4b4d-867f-a1a171b0ee01"
+  },
+  {
+    "id": "dd29c4cd-0d46-4fdc-a8f6-922721b769ea",
+    "name": "Data analysis",
+    "parentId": "c4c1c8ee-aff7-4b4d-867f-a1a171b0ee01"
+  },
+  {
+    "id": "8d1f80d7-b413-40ae-bf74-9b5dbf7130e7",
+    "name": "Database designer",
+    "parentId": "c4c1c8ee-aff7-4b4d-867f-a1a171b0ee01"
+  }
+]
