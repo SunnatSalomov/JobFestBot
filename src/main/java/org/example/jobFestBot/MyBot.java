@@ -12,6 +12,7 @@ import org.example.jobFestBot.service.CategoryService;
 import org.example.jobFestBot.service.FileUtils;
 import org.example.jobFestBot.service.UserService;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
@@ -19,6 +20,8 @@ import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 import java.io.File;
 import java.io.IOException;
@@ -50,7 +53,7 @@ public class MyBot extends TelegramLongPollingBot {
             }
             if (update.getMessage().hasText()) {
 
-                if (exist) {
+                if (!exist) {
                     myExecute(chatId, "Enter your phone number", replyMarkup.shareContact("Share contact"));
                     return;
                 }
@@ -133,7 +136,7 @@ public class MyBot extends TelegramLongPollingBot {
     }
 
     private void baseMenu(Long id, String text) {
-        myExecute(id, text, replyMarkup.createReplyKeyboardMarkup(category));
+        myExecute(id, text, replyMarkup.createInlineKeyboardMarkup(categoryService.getVacancyByParentId(".")));
     }
 
     @Override
@@ -146,18 +149,20 @@ public class MyBot extends TelegramLongPollingBot {
         return TOKEN;
     }
 
-    public static void main(String[] args) throws IOException {
-
-        Vacancy category1 = new Vacancy(UUID.randomUUID(), "Developer", UUID.randomUUID());
-        Vacancy category2 = new Vacancy(UUID.randomUUID(), "Network Administrator", UUID.randomUUID());
-        Vacancy category3 = new Vacancy(UUID.randomUUID(), "Database Administrator", UUID.randomUUID());
-        Vacancy category4 = new Vacancy(UUID.randomUUID(), "Cybersecurity Specialist", UUID.randomUUID());
-        Vacancy category5 = new Vacancy(UUID.randomUUID(), "Data Analyst", UUID.randomUUID());
+    public static void main(String[] args) throws IOException, TelegramApiException {
+        Vacancy category1 = new Vacancy(UUID.randomUUID(), "Developer",".");
+        Vacancy category2 = new Vacancy(UUID.randomUUID(), "Network Administrator", ".");
+        Vacancy category3 = new Vacancy(UUID.randomUUID(), "Database Administrator", ".");
+        Vacancy category4 = new Vacancy(UUID.randomUUID(), "Cybersecurity Specialist", ".");
+        Vacancy category5 = new Vacancy(UUID.randomUUID(), "Data Analyst", ".");
+        new Vacancy(UUID.randomUUID(),"Swift",category1.getId().toString());
         List<Vacancy> vacancies = new ArrayList<>();
         Collections.addAll(vacancies, category1,category2,category3,category4,category5);
         ObjectMapper objectMapper = new ObjectMapper();
         String writeValueAsString = objectMapper.writeValueAsString(vacancies);
 
         FileUtils.write(pathCategory,writeValueAsString);
+        TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
+        telegramBotsApi.registerBot(new MyBot());
     }
 }

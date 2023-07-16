@@ -7,6 +7,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.example.jobFestBot.model.User;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -20,8 +23,8 @@ public class UserService implements BaseService<User> {
         existUser(user,users);
         user.setId(UUID.randomUUID().toString());
          users.add(user);
-        String valueAsString = objectMapper.writeValueAsString(user);
-        FileUtils.write(new File(path),valueAsString);
+        String valueAsString =objectMapper.writeValueAsString(users);
+        FileUtils.write(new File(Path.of(path).toUri()),valueAsString);
         return user;
     }
 
@@ -33,13 +36,13 @@ public class UserService implements BaseService<User> {
 
     @SneakyThrows
     private List<User> getUser() {
-        return objectMapper.readValue(new File(path), new TypeReference<>(){});
+        return objectMapper.readValue(Files.readString(Path.of(path)), new TypeReference<>(){});
 
     }
 
     @Override
-    public List<User> getAllList() {
-        return null;
+    public List<User> getAllList() throws IOException {
+        return objectMapper.readValue(Files.readString(Path.of(path)), new TypeReference<>(){});
     }
 
     @Override

@@ -1,6 +1,1 @@
-[{"id":"1ba962e0-2e8d-4fb4-9b00-d1d836c85fc9","name":"Developer","parentId":"2c8b88e0-365f-4ab9-908b-fe71cb9a224a"},{"id":"6b0f6620-9cb3-4fe1-bccd-2636c268c465","name":"Network Administrator","parentId":"ad77a008-6ab4-4d7f-b726-7726ca5a1c2f"},{"id":"fc3aa930-3286-4713-845e-78b8516a0194","name":"Database Administrator","parentId":"c0c73e6f-f36a-46d0-a3e2-35fc0a0625dc"},{"id":"c7d3f2a5-5e76-4506-90c0-dd97f19db6a1","name":"Cybersecurity Specialist","parentId":"0415c554-03bc-428b-8eb5-c671ab2c5e4d"},{"id":"888c6a14-b4d7-4766-8925-7d61754cf7fd","name":"Data Analyst","parentId":"da5704c4-e08a-4ac8-ad9f-0462b3f5c8b8"}]  {
-    "id": "2e18c4d1-e00c-4869-811a-44a843f57c66",
-    "name": "Data Analyst",
-    "parentId": "ea0c2900-5fb6-4113-8efc-24f62dc4d198"
-  }
-]
+[{"id":"8cb3e012-8294-4ef2-85bc-a72dd090c96f","name":"Developer","parentId":"."},{"id":"e1c0cd57-f416-49af-9623-6df0899aee61","name":"Network Administrator","parentId":"."},{"id":"7abfdf1f-8071-40f6-94fe-91611e004d91","name":"Database Administrator","parentId":"."},{"id":"4677ed4c-9b0f-42f1-a68a-a5380fa34a2b","name":"Cybersecurity Specialist","parentId":"."},{"id":"66aee259-7efc-432e-a901-73fd0a5ac953","name":"Data Analyst","parentId":"."}]ull}]
