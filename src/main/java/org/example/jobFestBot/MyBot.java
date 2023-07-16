@@ -5,12 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.example.jobFestBot.bot.utils.MyReplyMarkup;
 import org.example.jobFestBot.bot.utils.UserConverter;
+import org.example.jobFestBot.model.Announcement;
 import org.example.jobFestBot.model.Vacancy;
 import org.example.jobFestBot.model.User;
-import org.example.jobFestBot.service.BardService;
-import org.example.jobFestBot.service.CategoryService;
-import org.example.jobFestBot.service.FileUtils;
-import org.example.jobFestBot.service.UserService;
+import org.example.jobFestBot.service.*;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -65,7 +63,8 @@ public class MyBot extends TelegramLongPollingBot {
                     STATE = "*";
                 }
                 if (StringUtils.equals(text, "VACANCY")) {
-                    myExecute("src/main/resources/image_1.jpg", chatId, "Please select the profession you need", replyMarkup.createInlineKeyboardMarkup(categoryService.getVacancyByParentId(".")));
+                    myExecute("src/main/resources/image_1.jpg", chatId,"\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47" +
+                            "\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47", replyMarkup.createInlineKeyboardMarkup(categoryService.getVacancyByParentId(".")));
                     STATE = "*";
                     return;
                 }
@@ -86,16 +85,24 @@ public class MyBot extends TelegramLongPollingBot {
             }
         }
         if (update.hasCallbackQuery()) {
+            AnnounceService announceService = new AnnounceService();
             CallbackQuery callbackQuery = update.getCallbackQuery();
-            List<Vacancy> vacancyByParentId = categoryService.getVacancyByParentId(callbackQuery.getData());
-            if (vacancyByParentId.isEmpty()) {
-                myExecute("src/main/resources/" + images.get(new Random().nextInt(images.size())), callbackQuery.getFrom().getId(),
-                        "Becend Dec", null);
+            if (categoryService.getVacancyByParentId(callbackQuery.getData()).isEmpty()) {
+                categoryService.getVacancyById(callbackQuery.getData()).getName();
+                for (int i = 0; i < new Random().nextInt(10); i++) {
+                    myExecute("src/main/resources/image_" + new Random().nextInt(2,6)+".jpg",
+                            callbackQuery.getFrom().getId(),
+                            categoryService.getVacancyById(callbackQuery.getData()).getName()+"   "
+                                    +categoryService.getVacancyById(categoryService.getVacancyById(callbackQuery.getData()).getParentId()).getName()+"\n\n"
+                                    +announceService.getAnnounce(), null);
+                }
+
                 return;
             }
             ReplyKeyboard replyKeyboard = replyMarkup.crateInlineCallbackData(callbackQuery.getData());
             myExecute("src/main/resources/image_3.jpg", callbackQuery.getFrom().getId(),
-                    "Please select the profession you need", replyKeyboard);
+                    "\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47" +
+                            "\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47", replyKeyboard);
         }
     }
 
