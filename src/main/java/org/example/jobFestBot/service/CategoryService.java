@@ -1,9 +1,7 @@
 package org.example.jobFestBot.service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.SneakyThrows;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.codec.binary.StringUtils;
 import org.example.jobFestBot.model.Category;
 
 import java.io.File;
@@ -22,7 +20,7 @@ public class CategoryService implements BaseService<Category> {
         categoryList.add(category);
 
         String valueAsString = objectMapper.writeValueAsString(category);
-        FileUtils.write(new File(path),valueAsString);
+        FileUtils.write(path,valueAsString);
         return category;
     }
 
@@ -33,7 +31,7 @@ public class CategoryService implements BaseService<Category> {
     @SneakyThrows
     @Override
     public List<Category> getAllList() {
-        return objectMapper.readValue(new File(path), new TypeReference<>() {});
+        return null;
     }
 
     @Override
