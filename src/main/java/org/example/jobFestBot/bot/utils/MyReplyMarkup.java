@@ -1,7 +1,6 @@
 package org.example.jobFestBot.bot.utils;
 
-import org.apache.commons.lang3.StringUtils;
-import org.example.jobFestBot.MyBot;
+
 import org.example.jobFestBot.model.Vacancy;
 import org.example.jobFestBot.service.CategoryService;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -18,16 +17,6 @@ import java.util.Objects;
 
 public class MyReplyMarkup {
     private static CategoryService categoryService = new CategoryService();
-   /* public static final List<String> developerMenu = List.
-            of("Swift", "Kotlin", "Java","HTML and CSS");
-    public static final List<String> networkAdministratorMenu = List.
-            of("Network design", "Network security",
-                    "Network maintenance","Network troubleshooting","Network documentation");
-    public static final List<String> dataAnalystMenu = List.of("Data cleaning", "Data analysis",
-            "Data modeling", "Data reporting", "Data visualization", "Business intelligence");
-    public static final List<String> databaseAdministratorMenu = List.of("Database design", "Database security",
-            "Database backup and recovery", "Database performance tuning",
-            "Database administration");*/
     public ReplyKeyboard createReplyKeyboardMarkup(List<String> category) {
         ReplyKeyboardMarkup replyKeyboard = new ReplyKeyboardMarkup();
 
@@ -100,8 +89,8 @@ public class MyReplyMarkup {
         replyKeyboardMarkup.setKeyboard(keyboardRows);
         return replyKeyboardMarkup;
     }
-        public ReplyKeyboard crateInlineCallbackData(String callbackData) {
-            List<Vacancy> list = categoryService.getAllList().stream().filter(vacancy -> Objects.equals(callbackData, vacancy.getParentId())).toList();
-            return createInlineKeyboardMarkup(list);
+        public ReplyKeyboard crateInlineCallbackData(String id) {
+       return createInlineKeyboardMarkup(categoryService.getVacancyByParentId(id));
+
         }
 }
