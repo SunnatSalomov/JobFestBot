@@ -18,7 +18,7 @@ import java.util.Objects;
 
 public class MyReplyMarkup {
     private static CategoryService categoryService = new CategoryService();
-    public static final List<String> developerMenu = List.
+   /* public static final List<String> developerMenu = List.
             of("Swift", "Kotlin", "Java","HTML and CSS");
     public static final List<String> networkAdministratorMenu = List.
             of("Network design", "Network security",
@@ -27,7 +27,7 @@ public class MyReplyMarkup {
             "Data modeling", "Data reporting", "Data visualization", "Business intelligence");
     public static final List<String> databaseAdministratorMenu = List.of("Database design", "Database security",
             "Database backup and recovery", "Database performance tuning",
-            "Database administration");
+            "Database administration");*/
     public ReplyKeyboard createReplyKeyboardMarkup(List<String> category) {
         ReplyKeyboardMarkup replyKeyboard = new ReplyKeyboardMarkup();
 
@@ -54,8 +54,8 @@ public class MyReplyMarkup {
         List<List<InlineKeyboardButton>> rows = new ArrayList<>();
         List<InlineKeyboardButton> row = new ArrayList<>();
         for (int i = 1; i <= inline.size(); i++) {
-            InlineKeyboardButton button = new InlineKeyboardButton(inline.get(i - 1).getId().toString());
-            button.setCallbackData(String.valueOf(i - 1));
+            InlineKeyboardButton button = new InlineKeyboardButton(inline.get(i - 1).getName().toString());
+            button.setCallbackData(inline.get(i-1).getId().toString());
             row.add(button);
             if (i % 2 == 0) {
                 rows.add(row);

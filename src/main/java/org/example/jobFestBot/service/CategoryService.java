@@ -38,9 +38,6 @@ public class CategoryService implements BaseService<Vacancy> {
     public List<Vacancy> getAllList() {
         List<Vacancy> vacancies = objectMapper.readValue(Files.readString(Path.of(path)), new TypeReference<>() {
         });
-
-
-
         System.out.println(vacancies);
         return vacancies;
     }
@@ -68,5 +65,11 @@ public class CategoryService implements BaseService<Vacancy> {
     @Override
     public Vacancy update(Vacancy category) {
         return null;
+    }
+    public List<Vacancy> getVacancyById(String id){
+       return getAllList().stream().filter(vacancy -> StringUtils.equals(vacancy.getId().toString(),id)).toList();
+    }
+    public List<Vacancy> getVacancyByParentId(String id){
+       return getAllList().stream().filter(vacancy -> StringUtils.equals(vacancy.getParentId(),id)).toList();
     }
 }

@@ -12,8 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Vacancy {
-
     private UUID id;
     private String name;
-    private UUID parentId;
+    private String parentId;
 }
