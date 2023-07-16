@@ -45,6 +45,9 @@ public class MyReplyMarkup {
         for (int i = 1; i <= inline.size(); i++) {
             InlineKeyboardButton button = new InlineKeyboardButton(inline.get(i - 1).getName().toString());
             button.setCallbackData(inline.get(i-1).getId().toString());
+            if (i==5 && inline.get(4).getParentId().equals(".")){
+                button.setUrl("https://getmatch.ru/vacancies?p=1&sa=250000&l=moscow&l=saints_p&pl=python&sp=dev_ops&pa=all");
+            }
             row.add(button);
             if (i % 2 == 0) {
                 rows.add(row);
