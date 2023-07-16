@@ -30,24 +30,24 @@ public class MyBot extends TelegramLongPollingBot {
     public static final List<String> category = List.of("VACANCY", "Share your doubts", "INFO");
     public static final List<String> vacancies = List.of("Developer", "Network Administrator",
             "Database Administrator", "Cybersecurity Specialist", "Data Analyst");
-
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage()) {
             Long chatId = update.getMessage().getChatId();
             boolean exist = userService.existByChatId(chatId);
+            if (update.getMessage().hasContact()) {
+                User user = userConverter.convertToEntity(update.getMessage().getContact());
+                userService.add(user);
+                baseMenu(chatId, "successfully registered");
+                return;
+            }
             if (update.getMessage().hasText()) {
 
                 if (exist) {
                     myExecute(chatId, "Enter your phone number", replyMarkup.shareContact("Share contact"));
                     return;
                 }
-                if (update.getMessage().hasContact()) {
-                    User user = userConverter.convertToEntity(update.getMessage().getContact());
-                    userService.add(user);
-                    baseMenu(chatId, "successfully registered");
-                    return;
-                }
+
                 String text = update.getMessage().getText();
                 if (StringUtils.equals(text, "/start")) {
                     baseMenu(chatId, "Choose category");
@@ -62,6 +62,7 @@ public class MyBot extends TelegramLongPollingBot {
                     myExecute("src/main/resources/image_2.jpg", chatId, "Through this bot you can find several" +
                             " available vacancies in the IT field. Start your career with us. Don't be afraid to dream!!!", null);
                 }
+
                 if (StringUtils.equals(STATE, "BARD")) {
                     String ansverFromBard = BardService.getAnsverFromBard(text);
                     myExecuteMessage(chatId, ansverFromBard);
@@ -70,7 +71,6 @@ public class MyBot extends TelegramLongPollingBot {
                     myExecuteMessage(chatId, "Any question");
                     STATE = "BARD";
                 }
-
             }
         }
 
