@@ -146,7 +146,7 @@ public class MyBot extends TelegramLongPollingBot {
         return TOKEN;
     }
 
-    public static void main(String[] args) throws IOException {
+   /* public static void main(String[] args) throws IOException {
 
         Vacancy category1 = new Vacancy(UUID.randomUUID(), "Developer", UUID.randomUUID());
         Vacancy category2 = new Vacancy(UUID.randomUUID(), "Network Administrator", UUID.randomUUID());
@@ -159,5 +159,5 @@ public class MyBot extends TelegramLongPollingBot {
         String writeValueAsString = objectMapper.writeValueAsString(vacancies);
 
         FileUtils.write(pathCategory,writeValueAsString);
-    }
+    }*/
 }

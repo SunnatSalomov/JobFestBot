@@ -1,1 +1,11 @@
-[{"id":"b170c916-9f5d-4b50-bc75-59eef84ddf64","chatId":6061519612,"firstName":"Nodir","lastName":null,"phoneNumber":"+998948954907","createdDate":null,"email":null}]
+[
+  {
+    "id": "b170c916-9f5d-4b50-bc75-59eef84ddf64",
+    "chatId": 6061519612,
+    "firstName": "Nodir",
+    "lastName": null,
+    "phoneNumber": "+998948954907",
+    "createdDate": null,
+    "email": null
+  }
+]
