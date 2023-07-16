@@ -16,6 +16,7 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
+import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -37,8 +38,8 @@ public class MyBot extends TelegramLongPollingBot {
     private static MyReplyMarkup replyMarkup = new MyReplyMarkup();
     public static final String pathCategory = "src/main/resources/category.json";
     public static final List<String> category = List.of("VACANCY", "Share your doubts", "INFO");
+    public static final List<String> images = List.of("image_4.jpg","image_5.jpg","image_6.jpg");
    private static CategoryService categoryService = new CategoryService();
-   public static final List<Vacancy> vacancies = categoryService.getAllList();
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -64,7 +65,7 @@ public class MyBot extends TelegramLongPollingBot {
                     STATE = "*";
                 }
                 if (StringUtils.equals(text, "VACANCY")) {
-                    myExecute("src/main/resources/image_1.jpg", chatId, "Please select the profession you need", replyMarkup.createInlineKeyboardMarkup(vacancies));
+                    myExecute("src/main/resources/image_1.jpg", chatId, "Please select the profession you need", replyMarkup.createInlineKeyboardMarkup(categoryService.getVacancyByParentId(".")));
                     STATE = "*";
                     return;
                 }if (StringUtils.equals(text, "INFO")) {
@@ -82,6 +83,18 @@ public class MyBot extends TelegramLongPollingBot {
                     STATE = "BARD";
                 }
             }
+        }
+        if (update.hasCallbackQuery()) {
+            CallbackQuery callbackQuery = update.getCallbackQuery();
+            List<Vacancy> vacancyByParentId = categoryService.getVacancyByParentId(callbackQuery.getData());
+            if (vacancyByParentId.isEmpty()){
+                myExecute("src/main/resources/"+images.get(new Random().nextInt(images.size())),callbackQuery.getFrom().getId(),
+                        "Becend Dec",null);
+                return;
+            }
+            ReplyKeyboard replyKeyboard = replyMarkup.crateInlineCallbackData(callbackQuery.getData());
+            myExecute("src/main/resources/image_3.jpg",callbackQuery.getFrom().getId(),
+                      "Please select the profession you need",replyKeyboard);
         }
     }
 
@@ -136,7 +149,7 @@ public class MyBot extends TelegramLongPollingBot {
     }
 
     private void baseMenu(Long id, String text) {
-        myExecute(id, text, replyMarkup.createInlineKeyboardMarkup(categoryService.getVacancyByParentId(".")));
+        myExecute(id, text, replyMarkup.createReplyKeyboardMarkup(category));
     }
 
     @Override

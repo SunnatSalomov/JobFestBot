@@ -1,7 +1,6 @@
 package org.example.jobFestBot.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.google.gson.Gson;
 import lombok.SneakyThrows;
 import org.apache.commons.codec.binary.StringUtils;
 import org.example.jobFestBot.model.Vacancy;
@@ -9,7 +8,6 @@ import org.example.jobFestBot.model.Vacancy;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -66,10 +64,10 @@ public class CategoryService implements BaseService<Vacancy> {
     public Vacancy update(Vacancy category) {
         return null;
     }
-    public List<Vacancy> getVacancyById(String id){
-       return getAllList().stream().filter(vacancy -> StringUtils.equals(vacancy.getId().toString(),id)).toList();
+    public Vacancy getVacancyById(String id){
+       return getAllList().stream().filter(vacancy -> StringUtils.equals(vacancy.getId().toString(),id)).findFirst().orElse(null);
     }
     public List<Vacancy> getVacancyByParentId(String id){
-       return getAllList().stream().filter(vacancy -> StringUtils.equals(vacancy.getParentId(),id)).toList();
+        return getAllList().stream().filter(vacancy -> StringUtils.equals(vacancy.getParentId(),id)).toList();
     }
 }
