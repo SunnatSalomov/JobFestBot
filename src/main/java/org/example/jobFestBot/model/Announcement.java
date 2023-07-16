@@ -12,8 +12,10 @@ import java.util.Locale;
 @NoArgsConstructor
 public class Announcement {
 
-    private String id;
     private String name;
-    private String description;
+    private String emailAdres;
+
     private String vacancy;
+    private String telNumber;
+    private String price;
 }
