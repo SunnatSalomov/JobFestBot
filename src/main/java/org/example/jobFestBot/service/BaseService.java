@@ -1,7 +1,6 @@
 package org.example.jobFestBot.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.jobFestBot.model.Category;
 
 import java.util.List;
 
