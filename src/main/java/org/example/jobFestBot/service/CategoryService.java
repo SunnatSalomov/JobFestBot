@@ -1,6 +1,7 @@
 package org.example.jobFestBot.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
+import org.apache.commons.codec.binary.StringUtils;
 import org.example.jobFestBot.model.Category;
 
 import java.io.File;
@@ -19,7 +20,7 @@ public class CategoryService implements BaseService<Category> {
         categoryList.add(category);
 
         String valueAsString = objectMapper.writeValueAsString(category);
-        FileUtils.write(new File(path),valueAsString);
+        FileUtils.write(path,valueAsString);
         return category;
     }
 
