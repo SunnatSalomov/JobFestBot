@@ -36,7 +36,6 @@ public class CategoryService implements BaseService<Vacancy> {
     public List<Vacancy> getAllList() {
         List<Vacancy> vacancies = objectMapper.readValue(Files.readString(Path.of(path)), new TypeReference<>() {
         });
-        System.out.println(vacancies);
         return vacancies;
     }
 
