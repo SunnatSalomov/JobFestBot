@@ -14,7 +14,6 @@ public class Announcement {
 
     private String name;
     private String emailAdres;
-
     private String vacancy;
     private String telNumber;
     private String price;
