@@ -154,10 +154,26 @@ public class MyBot extends TelegramLongPollingBot {
         Vacancy category2 = new Vacancy(UUID.randomUUID(), "Network Administrator", ".");
         Vacancy category3 = new Vacancy(UUID.randomUUID(), "Database Administrator", ".");
         Vacancy category4 = new Vacancy(UUID.randomUUID(), "Cybersecurity Specialist", ".");
-        Vacancy category5 = new Vacancy(UUID.randomUUID(), "Data Analyst", ".");
-        new Vacancy(UUID.randomUUID(),"Swift",category1.getId().toString());
+        Vacancy category5 = new Vacancy(UUID.randomUUID(), "ALL VACANCIES", ".");
+        Vacancy java = new Vacancy(UUID.randomUUID(), "JAVA", category1.getId().toString());
+        Vacancy swift = new Vacancy(UUID.randomUUID(), "Swift", category1.getId().toString());
+        Vacancy python = new Vacancy(UUID.randomUUID(), "Python", category1.getId().toString());
+        Vacancy net = new Vacancy(UUID.randomUUID(), ".NET", category1.getId().toString());
+        Vacancy php = new Vacancy(UUID.randomUUID(), "PHP", category1.getId().toString());
+
+        Vacancy networkDesign = new Vacancy(UUID.randomUUID(), "Network design", category2.getId().toString());
+        Vacancy networkSecurity = new Vacancy(UUID.randomUUID(), "Network security", category2.getId().toString());
+        Vacancy networkMaintenance = new Vacancy(UUID.randomUUID(), "Network maintenance", category2.getId().toString());
+
+//        "Data cleaning", "Data analysis",
+        Vacancy dataCleaning = new Vacancy(UUID.randomUUID(), "Data cleaning", category3.getId().toString());
+        Vacancy dataAnalysis = new Vacancy(UUID.randomUUID(), "Data analysis", category3.getId().toString());
+        Vacancy databaseDesigner = new Vacancy(UUID.randomUUID(), "Database designer", category3.getId().toString());
+
+
         List<Vacancy> vacancies = new ArrayList<>();
-        Collections.addAll(vacancies, category1,category2,category3,category4,category5);
+        Collections.addAll(vacancies, category1,category2,category3,category4,category5,java,swift,python,php
+                ,net,networkDesign,networkSecurity,networkMaintenance,dataCleaning,dataAnalysis,databaseDesigner);
         ObjectMapper objectMapper = new ObjectMapper();
         String writeValueAsString = objectMapper.writeValueAsString(vacancies);
 
