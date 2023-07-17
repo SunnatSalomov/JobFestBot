@@ -16,7 +16,7 @@ public class CategoryService implements BaseService<Vacancy> {
     private static final String path = "src/main/resources/category.json";
     @Override
     @SneakyThrows
-    public Vacancy add(Vacancy category) {
+    public void add(Vacancy category) {
         List<Vacancy> categoryList = getAllList();
         existCategory(category,categoryList);
         category.setId(UUID.randomUUID());
@@ -24,7 +24,6 @@ public class CategoryService implements BaseService<Vacancy> {
 
         String valueAsString = objectMapper.writeValueAsString(category);
         FileUtils.write(path,valueAsString);
-        return category;
     }
 
     private boolean existCategory(Vacancy category, List<Vacancy> categoryList) {
