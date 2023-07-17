@@ -3,12 +3,10 @@ package org.example.jobFestBot.service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.SneakyThrows;
 import org.example.jobFestBot.model.Announcement;
-import org.example.jobFestBot.model.LikeModel;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -16,14 +14,25 @@ import java.util.Random;
 public class AnnounceService implements BaseService<Announcement> {
     private static final String path = "src/main/resources/announce.json";
 
+    @SneakyThrows
     @Override
-    public Announcement add(Announcement announceService) {
-        return null;
+    public void add(Announcement announce) {
+        List<Announcement> announcement = getAnnouncement();
+        announcement.add(announce);
+        String json = objectMapper.writeValueAsString(announcement);
+        FileUtils.write(path, json);
+    }
+
+    @SneakyThrows
+    private static List<Announcement> getAnnouncement() {
+        return objectMapper.readValue(new File(path), new TypeReference<List<Announcement>>() {
+        });
     }
 
     @Override
     public List<Announcement> getAllList() throws IOException {
-        return objectMapper.readValue(Files.readString(Path.of(path)), new TypeReference<>() {});
+        return objectMapper.readValue(Files.readString(Path.of(path)), new TypeReference<>() {
+        });
     }
 
     @Override
@@ -40,6 +49,7 @@ public class AnnounceService implements BaseService<Announcement> {
     public Announcement update(Announcement announceService) {
         return null;
     }
+
     @SneakyThrows
     public Announcement getAnnounce(){
         List<Announcement> allList = getAllList();

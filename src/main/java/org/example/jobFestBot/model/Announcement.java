@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
+import java.time.LocalDate;
+import java.util.Locale;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 public class Announcement {
     private String announceId;
