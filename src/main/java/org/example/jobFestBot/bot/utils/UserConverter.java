@@ -9,4 +9,7 @@ public class UserConverter {
         user.setChatId(contact.getUserId());
         return user;
     }
+    public void convertAnnounce(String id){
+
+    }
 }

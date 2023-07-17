@@ -73,7 +73,28 @@ public class MyReplyMarkup {
         inlineKeyboardMarkup.setKeyboard(rows);
         return inlineKeyboardMarkup;
     }
+    public ReplyKeyboard createInlineKeyboardMarkupLike() {
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rows = new ArrayList<>();
 
+        List<InlineKeyboardButton> row = new ArrayList<>();
+        InlineKeyboardButton btn1 = new InlineKeyboardButton();
+
+        btn1.setText("\uD83D\uDC4D like");
+        btn1.setCallbackData("like");
+        InlineKeyboardButton btn2 = new InlineKeyboardButton();
+        btn2.setText("\uD83D\uDC4E dislike");
+        btn2.setCallbackData("dislike");
+        btn2.setText("\uD83E\uDEAA CV");
+        btn2.setCallbackData("CV");
+
+        row.add(btn1);
+        row.add(btn2);
+        rows.add(row);
+
+        inlineKeyboardMarkup.setKeyboard(rows);
+        return inlineKeyboardMarkup;
+    }
     public ReplyKeyboard shareContact(String title) {
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         KeyboardRow row = new KeyboardRow();
