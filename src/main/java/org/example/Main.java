@@ -14,6 +14,5 @@ public class Main {
        telegramBotsApi.registerBot(new MyBot());
         AddJobs addJobs = new AddJobs();
         addJobs.addAnnounceToJob();
-
     }
 }

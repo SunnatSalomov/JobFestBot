@@ -18,12 +18,11 @@ public class JobService implements BaseService<Job> {
 
     @SneakyThrows
     @Override
-    public Job add(Job job) {
-      //  job.setId(UUID.randomUUID().toString());
+    public void add(Job job) {
+        //  job.setId(UUID.randomUUID().toString());
 
         objectMapper.writeValue(new File(PATH), job);
 
-        return job;
     }
 
     @SneakyThrows
@@ -46,7 +45,8 @@ public class JobService implements BaseService<Job> {
     @SneakyThrows
     @Override
     public void delete(String id) {
-        List<Job> jobs = objectMapper.readValue(new File(PATH), new TypeReference<List<Job>>() {});
+        List<Job> jobs = objectMapper.readValue(new File(PATH), new TypeReference<List<Job>>() {
+        });
         for (Job job : jobs) {
             if (StringUtils.equals(job.getId(), id)) {
                 jobs.remove(job);
@@ -59,7 +59,8 @@ public class JobService implements BaseService<Job> {
     @SneakyThrows
     @Override
     public Job update(Job job) {
-        List<Job> jobs = objectMapper.readValue(new File(PATH), new TypeReference<List<Job>>() {});
+        List<Job> jobs = objectMapper.readValue(new File(PATH), new TypeReference<List<Job>>() {
+        });
         for (Job j : jobs) {
             if (StringUtils.equals(j.getId(), job.getId())) {
                 jobs.remove(j);

@@ -3,7 +3,6 @@ package org.example.jobFestBot.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.SneakyThrows;
-import org.apache.commons.io.FileUtils;
 import org.example.jobFestBot.model.Announcement;
 import org.example.jobFestBot.model.User;
 
@@ -19,23 +18,25 @@ import java.util.UUID;
 public class AnnounceService implements BaseService<Announcement> {
     private static final String path = "src/main/resources/announce.json";
 
+    @SneakyThrows
     @Override
-    public Announcement add(Announcement announceService) throws IOException {
-        List<Announcement> users = getAnnouncement();
-        existUser(user,users);
-        user.setId(UUID.randomUUID().toString());
-        users.add(user);
-        String valueAsString =objectMapper.writeValueAsString(users);
-        FileUtils.write(new File(Path.of(path).toUri()),valueAsString);
-        return user;
+    public void add(Announcement announce) {
+        List<Announcement> announcement = getAnnouncement();
+        announcement.add(announce);
+        String json = objectMapper.writeValueAsString(announcement);
+        FileUtils.write(path, json);
     }
 
-    private List<Announcement> getAnnouncement() {
+    @SneakyThrows
+    private static List<Announcement> getAnnouncement() {
+        return objectMapper.readValue(new File(path), new TypeReference<List<Announcement>>() {
+        });
     }
 
     @Override
     public List<Announcement> getAllList() throws IOException {
-        return objectMapper.readValue(Files.readString(Path.of(path)), new TypeReference<>() {});
+        return objectMapper.readValue(Files.readString(Path.of(path)), new TypeReference<>() {
+        });
     }
 
     @Override
@@ -52,12 +53,13 @@ public class AnnounceService implements BaseService<Announcement> {
     public Announcement update(Announcement announceService) {
         return null;
     }
+
     @SneakyThrows
-    public String getAnnounce(){
+    public String getAnnounce() {
         List<Announcement> allList = getAllList();
         Announcement announcement = allList.get(new Random().nextInt(allList.size()));
-        return "🏢 Company: "+announcement.getName()+"\n \uD83D\uDCCD Address: "+announcement.getVacancy()+"\nSalary : "+announcement.getPrice()+"\n☎\uFE0F "
-                +announcement.getEmailAdres()+"\nPhone number :"+announcement.getTelNumber()+
+        return "🏢 Company: " + announcement.getName() + "\n \uD83D\uDCCD Address: " + announcement.getVacancy() + "\nSalary : " + announcement.getPrice() + "\n☎\uFE0F "
+                + announcement.getEmailAdres() + "\nPhone number :" + announcement.getTelNumber() +
                 "\n\n \uD83D\uDC49 Vacancy to post Resume \uD83D\uDC49 @nodir0050\n" +
                 "\n" +
                 "        Subscribe for daily announcements! \uD83C\uDFAF\n" +

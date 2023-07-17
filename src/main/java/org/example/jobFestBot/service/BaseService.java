@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface BaseService<T> {
     ObjectMapper objectMapper = new ObjectMapper();
-    T add(T t) throws IOException;
+    void add(T t) throws IOException;
     List<T> getAllList() throws IOException;
     T getById(String id);
     void delete(String id);
