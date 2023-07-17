@@ -3,7 +3,9 @@ package org.example.jobFestBot;
 import org.apache.commons.lang3.StringUtils;
 import org.example.jobFestBot.bot.utils.MyReplyMarkup;
 import org.example.jobFestBot.bot.utils.UserConverter;
+import org.example.jobFestBot.model.Announcement;
 import org.example.jobFestBot.model.User;
+import org.example.jobFestBot.model.Vacancy;
 import org.example.jobFestBot.service.*;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -82,7 +84,6 @@ public class MyBot extends TelegramLongPollingBot {
             AnnounceService announceService = new AnnounceService();
             CallbackQuery callbackQuery = update.getCallbackQuery();
             Long chatId = callbackQuery.getMessage().getChatId();
-            String inlineMessageId = callbackQuery.getInlineMessageId();
             String data = callbackQuery.getData();
             System.out.println(data);
             if (data.equals("like")) {
@@ -94,8 +95,7 @@ public class MyBot extends TelegramLongPollingBot {
                 return;
             }
             if (categoryService.getVacancyByParentId(callbackQuery.getData()).isEmpty()) {
-                myExecute("src/main/resources/image_" + new Random().nextInt(2, 6) + ".jpg", callbackQuery.getFrom().getId(),
-                        "   " + " like " + LikeService.getCount(chatId,announceService.getAnnounce().getEmailAdres()), replyMarkup.createInlineKeyboardMarkupLike());
+                exexuteCatigory(announceService, callbackQuery, chatId);
                 return;
             }
 
@@ -105,6 +105,23 @@ public class MyBot extends TelegramLongPollingBot {
                     "\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47" +
                             "\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47", replyKeyboard);
         }
+    }
+
+    private void exexuteCatigory(AnnounceService announceService, CallbackQuery callbackQuery, Long chatId) {
+        String s = String.valueOf(callbackQuery);
+        Announcement announce = announceService.getAnnounce();
+        for (int i = 0; i < new Random().nextInt(1, 10); i++) {
+            myExecute("src/main/resources/image_" + new Random().nextInt(2, 6) + ".jpg", callbackQuery.getFrom().getId(),
+                    "🏢 Company: "+announce.getName()+"\n \uD83D\uDCCD Address: "+announce.getVacancy()+"\nSalary : "+announce.getPrice()+"\n☎️\uFE0F "
+                            +announce.getEmailAdres()+"\nPhone number :"+announce.getTelNumber()+
+                            "\n\n \uD83D\uDC49 Vacancy to post Resume \uD83D\uDC49 @nodir0050\n" +
+                            "\n" +
+                            "        Subscribe for daily announcements! \uD83C\uDFAF\n" +
+                            "\n" +
+                            "   \n" +
+                            "Our instagram channel \uD83D\uDC49 https://www.instagram.com/pdpuz/ \uD83D\uDC48"+ "   " + " like " + LikeService.getCount(chatId, announceService.getAnnounce().getEmailAdres()), replyMarkup.createInlineKeyboardMarkupLike());
+        }
+
     }
 
     private void myExecute(Long chatId, String message, ReplyKeyboard r) {

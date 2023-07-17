@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.SneakyThrows;
 import org.example.jobFestBot.model.Announcement;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,7 +26,7 @@ public class AnnounceService implements BaseService<Announcement> {
 
     @SneakyThrows
     private static List<Announcement> getAnnouncement() {
-        return objectMapper.readValue(new File(path), new TypeReference<List<Announcement>>() {
+        return objectMapper.readValue(new File(path), new TypeReference<>() {
         });
     }
 
@@ -53,6 +54,6 @@ public class AnnounceService implements BaseService<Announcement> {
     @SneakyThrows
     public Announcement getAnnounce(){
         List<Announcement> allList = getAllList();
-        return allList.get(1/*new Random().nextInt(allList.size())*/);
+        return allList.get(3);//new Random().nextInt(3));
     }
 }

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.Locale;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
