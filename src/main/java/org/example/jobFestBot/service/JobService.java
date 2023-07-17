@@ -4,6 +4,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.example.jobFestBot.model.Job;
+import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.File;
 import java.util.List;
@@ -15,7 +19,7 @@ public class JobService implements BaseService<Job> {
     @SneakyThrows
     @Override
     public Job add(Job job) {
-        job.setId(UUID.randomUUID().toString());
+      //  job.setId(UUID.randomUUID().toString());
 
         objectMapper.writeValue(new File(PATH), job);
 
@@ -66,4 +70,5 @@ public class JobService implements BaseService<Job> {
         objectMapper.writeValue(new File(PATH), jobs);
         return job;
     }
+
 }

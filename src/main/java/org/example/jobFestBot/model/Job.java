@@ -4,14 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+import java.util.UUID;
 
+@Data
 public class Job {
-    private String  id;
-    private Vacancy category;
-    private String name;
-    private String description;
-    private Double salary;
+    private   final String  id = UUID.randomUUID().toString() ;
+   private Announcement announcement;
+
+    public Job( Announcement announcement) {
+        this.announcement = announcement;
+    }
 }
+
+
