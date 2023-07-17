@@ -31,6 +31,7 @@ public class MyBot extends TelegramLongPollingBot {
     public static final List<String> category = List.of("VACANCY", "Share your doubts", "ℹ\uFE0F INFO");
     public static final List<String> images = List.of("image_4.jpg", "image_5.jpg", "image_6.jpg");
     private static CategoryService categoryService = new CategoryService();
+    private static String an = "";
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -56,7 +57,7 @@ public class MyBot extends TelegramLongPollingBot {
                     STATE = "*";
                 }
                 if (StringUtils.equals(text, "VACANCY")) {
-                    myExecute("src/main/resources/image_1.jpg", chatId,"\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47" +
+                    myExecute("src/main/resources/image_1.jpg", chatId, "\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47" +
                             "\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDC47", replyMarkup.createInlineKeyboardMarkup(categoryService.getVacancyByParentId(".")));
                     STATE = "*";
                     return;
@@ -84,24 +85,20 @@ public class MyBot extends TelegramLongPollingBot {
             String inlineMessageId = callbackQuery.getInlineMessageId();
             String data = callbackQuery.getData();
             System.out.println(data);
-            if (data.equals("like")){
-                LikeService.likeEdit(chatId,inlineMessageId);
+            if (data.equals("like")) {
+                LikeService.likeEdit(chatId, announceService.getAnnounce().getEmailAdres());
                 return;
-            }if (data.equals("dislike")){
-                LikeService.disLikeEdit(chatId,inlineMessageId);
+            }
+            if (data.equals("dislike")) {
+                LikeService.disLikeEdit(chatId, announceService.getAnnounce().getEmailAdres());
                 return;
             }
             if (categoryService.getVacancyByParentId(callbackQuery.getData()).isEmpty()) {
-                categoryService.getVacancyById(callbackQuery.getData()).getName();
-                for (int i = 0; i < new Random().nextInt(10); i++) {
-                    myExecute("src/main/resources/image_" + new Random().nextInt(2,6)+".jpg",
-                            callbackQuery.getFrom().getId(),
-                            categoryService.getVacancyById(callbackQuery.getData()).getName()+"   "
-                                    +categoryService.getVacancyById(categoryService.getVacancyById(callbackQuery.getData()).getParentId()).getName()+"\n\n"
-                                    +announceService.getAnnounce(), replyMarkup.createInlineKeyboardMarkupLike());
-                }
+                myExecute("src/main/resources/image_" + new Random().nextInt(2, 6) + ".jpg", callbackQuery.getFrom().getId(),
+                        "   " + " like " + LikeService.getCount(chatId,announceService.getAnnounce().getEmailAdres()), replyMarkup.createInlineKeyboardMarkupLike());
                 return;
             }
+
 
             ReplyKeyboard replyKeyboard = replyMarkup.crateInlineCallbackData(callbackQuery.getData());
             myExecute("src/main/resources/image_3.jpg", callbackQuery.getFrom().getId(),
@@ -139,7 +136,7 @@ public class MyBot extends TelegramLongPollingBot {
         s.setCaption(message);
         s.setPhoto(new InputFile(new File(image)));
         s.setReplyMarkup(r);
-       // System.out.println("r = " + r);
+        // System.out.println("r = " + r);
         try {
             execute(s);
 

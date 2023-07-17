@@ -6,10 +6,14 @@ import lombok.Data;
 public class LikeModel {
     private long chatId;
     private int likeCount = 0;
-    private String messageID;
+    private String email;
 
-    public LikeModel(long chatId, String messageID) {
+    public LikeModel(long chatId, String email) {
         this.chatId = chatId;
-        this.messageID = messageID;
+        this.email = email;
+    }
+
+    public LikeModel(long chatId) {
+        this.chatId = chatId;
     }
 }
