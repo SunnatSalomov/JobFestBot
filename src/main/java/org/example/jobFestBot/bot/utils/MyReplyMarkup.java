@@ -1,6 +1,7 @@
 package org.example.jobFestBot.bot.utils;
 
 
+import org.apache.commons.lang3.StringUtils;
 import org.example.jobFestBot.model.Vacancy;
 import org.example.jobFestBot.service.CategoryService;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -15,6 +16,7 @@ import java.util.List;
 
 public class MyReplyMarkup {
     private static CategoryService categoryService = new CategoryService();
+
     public ReplyKeyboard createReplyKeyboardMarkup(List<String> category) {
         ReplyKeyboardMarkup replyKeyboard = new ReplyKeyboardMarkup();
 
@@ -42,8 +44,8 @@ public class MyReplyMarkup {
         List<InlineKeyboardButton> row = new ArrayList<>();
         for (int i = 1; i <= inline.size(); i++) {
             InlineKeyboardButton button = new InlineKeyboardButton(inline.get(i - 1).getName().toString());
-            button.setCallbackData(inline.get(i-1).getId().toString());
-            if (i==5 && inline.get(4).getParentId().equals(".")){
+            button.setCallbackData(inline.get(i - 1).getId().toString());
+            if (StringUtils.equals(inline.get(i - 1).getName(), "ALL VACANCIES")) {
                 button.setUrl("https://getmatch.ru/vacancies?p=1&sa=250000&l=moscow&l=saints_p&pl=python&sp=dev_ops&pa=all");
             }
             row.add(button);
@@ -60,16 +62,23 @@ public class MyReplyMarkup {
         return inlineKeyboardMarkup;
     }
 
-    public ReplyKeyboard createInlineKeyboardMarkupURL(String inline) {
+    public ReplyKeyboard createInlineKeyboardMarkupLike() {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rows = new ArrayList<>();
+
         List<InlineKeyboardButton> row = new ArrayList<>();
-        InlineKeyboardButton keyboardButton = new InlineKeyboardButton();
-        keyboardButton.setText(inline);
-        keyboardButton.setCallbackData("nn");
-        keyboardButton.setUrl("https://getmatch.ru/vacancies?p=1&sa=250000&l=moscow&l=saints_p&pl=python&sp=dev_ops&pa=all");
-        row.add(keyboardButton);
+        InlineKeyboardButton btn1 = new InlineKeyboardButton();
+
+        btn1.setText("\uD83D\uDC4D like");
+        btn1.setCallbackData("like");
+        InlineKeyboardButton btn2 = new InlineKeyboardButton();
+        btn2.setText("\uD83D\uDC4E dislike");
+        btn2.setCallbackData("dislike");
+
+        row.add(btn1);
+        row.add(btn2);
         rows.add(row);
+
         inlineKeyboardMarkup.setKeyboard(rows);
         return inlineKeyboardMarkup;
     }
@@ -90,8 +99,9 @@ public class MyReplyMarkup {
         replyKeyboardMarkup.setKeyboard(keyboardRows);
         return replyKeyboardMarkup;
     }
-        public ReplyKeyboard crateInlineCallbackData(String id) {
-       return createInlineKeyboardMarkup(categoryService.getVacancyByParentId(id));
 
-        }
+    public ReplyKeyboard crateInlineCallbackData(String id) {
+        System.out.println("id = " + id);
+        return createInlineKeyboardMarkup(categoryService.getVacancyByParentId(id));
+    }
 }
