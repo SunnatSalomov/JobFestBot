@@ -87,8 +87,7 @@ public class MyBot extends TelegramLongPollingBot {
             if (data.equals("like")){
                 LikeService.likeEdit(chatId,inlineMessageId);
                 return;
-            }
-            if (data.equals("dislike")){
+            }if (data.equals("dislike")){
                 LikeService.disLikeEdit(chatId,inlineMessageId);
                 return;
             }
