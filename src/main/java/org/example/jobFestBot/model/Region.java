@@ -21,6 +21,5 @@ public enum Region {
     TOSHKENT("Toshkent viloyati");
 
     @JsonValue
-    private final String nomi;
-
+    private final String nomi; //nomi ? change to english
 }

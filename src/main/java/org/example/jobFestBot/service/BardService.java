@@ -6,7 +6,7 @@ import com.pkslow.ai.domain.Answer;
 
 public class BardService {
     public static String getAnsverFromBard(String que) {
-        AIClient aiClient = new GoogleBardClient("Ywj8m4nfxX3NJUUHiDHHDAV9snUpmdbV72iROoDfCj9UM0d1WQRliJg1dggL8HaNt9sCaQ.");
+        AIClient aiClient = new GoogleBardClient("YQi9-gL2cRtXUZDa8oPBMH5ddt6-KxeIp0U9JdPtQ22352NXEz1V3pWy9ufAiCxU76LNWg.");
         Answer hello = aiClient.ask(que);
         return hello.getChosenAnswer();
     }

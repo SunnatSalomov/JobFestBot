@@ -9,6 +9,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -62,10 +63,22 @@ public class CategoryService implements BaseService<Vacancy> {
     public Vacancy update(Vacancy category) {
         return null;
     }
+
     public Vacancy getVacancyById(String id){
-       return getAllList().stream().filter(vacancy -> StringUtils.equals(vacancy.getId().toString(),id)).findFirst().orElse(null);
+        System.out.println("id = " + id);
+            String id0= "" ;
+        if (!id.equals(".")){
+            id0 =id0 + id.substring(id.length()-36);
+        }
+        String id1 = id0;
+        System.out.println("id1 = " + id1);
+        return getAllList().stream().filter(vacancy -> Objects.equals(vacancy.getId().toString(),id1)).findFirst().get();
     }
+    public Vacancy getVacancyById1(String id){
+       return getAllList().stream().filter(vacancy -> Objects.equals(vacancy.getParentId(),id)).findFirst().orElse(null);
+    }
+
     public List<Vacancy> getVacancyByParentId(String id){
-        return getAllList().stream().filter(vacancy -> StringUtils.equals(vacancy.getParentId(),id)).toList();
+        return getAllList().stream().filter(vacancy -> Objects.equals(vacancy.getParentId(),id)).toList();
     }
 }
