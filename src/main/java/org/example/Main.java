@@ -12,7 +12,5 @@ public class Main {
     public static void main(String[] args) throws TelegramApiException, IOException {
     TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
        telegramBotsApi.registerBot(new MyBot());
-        AddJobs addJobs = new AddJobs();
-        addJobs.addAnnounceToJob();
     }
 }

@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MyReplyMarkup {
     private static CategoryService categoryService = new CategoryService();
-
+       public static String parentId=null;
     public ReplyKeyboard createReplyKeyboardMarkup(List<String> category) {
         ReplyKeyboardMarkup replyKeyboard = new ReplyKeyboardMarkup();
 
@@ -49,6 +49,7 @@ public class MyReplyMarkup {
                 button.setUrl("https://getmatch.ru/vacancies?p=1&sa=250000&l=moscow&l=saints_p&pl=python&sp=dev_ops&pa=all");
             }
             row.add(button);
+             parentId = inline.get(i - 1).getParentId();
             if (i % 2 == 0) {
                 rows.add(row);
                 row = new ArrayList<>();
@@ -58,8 +59,21 @@ public class MyReplyMarkup {
         if (inline.size() % 2 != 0) {
             rows.add(row);
         }
+
+        if (isVisiable(inline)){
+            if (!parentId.equals(".")){
+            InlineKeyboardButton button = new InlineKeyboardButton("Back ⬅\uFE0F");
+            button.setCallbackData("back"+parentId);
+            row= new ArrayList<>();
+            row.add(button);
+            rows.add(row);}
+        }
         inlineKeyboardMarkup.setKeyboard(rows);
         return inlineKeyboardMarkup;
+    }
+
+    private boolean isVisiable(List<Vacancy> inline) {
+        return !inline.stream().allMatch(vacancy -> vacancy.getParentId()==null);
     }
 
     public ReplyKeyboard createInlineKeyboardMarkupLike() {
@@ -75,8 +89,12 @@ public class MyReplyMarkup {
         btn2.setText("\uD83D\uDC4E dislike");
         btn2.setCallbackData("dislike");
 
+        InlineKeyboardButton btn3 = new InlineKeyboardButton("Back ◀\uFE0F");
+        btn3.setCallbackData("back"+parentId);
+
         row.add(btn1);
         row.add(btn2);
+        row.add(btn3);
         rows.add(row);
 
         inlineKeyboardMarkup.setKeyboard(rows);
@@ -100,8 +118,9 @@ public class MyReplyMarkup {
         return replyKeyboardMarkup;
     }
 
+
+
     public ReplyKeyboard crateInlineCallbackData(String id) {
-        System.out.println("id = " + id);
         return createInlineKeyboardMarkup(categoryService.getVacancyByParentId(id));
     }
 }

@@ -13,5 +13,3 @@ public class Job {
         this.announcement = announcement;
     }
 }
-
-

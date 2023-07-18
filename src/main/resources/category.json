@@ -1,68 +1,83 @@
 [
   {
-    "id": "809aac62-5b35-47a9-9c38-d78501cb0a11",
+    "id": "08c1bdd2-f465-438a-a859-182f9379bcf4",
     "name": "Developer",
     "parentId": "."
   },
   {
-    "id": "d7aede69-274f-4e53-a5e8-9e728a8ef395",
+    "id": "7ebc6da3-928a-4566-b0f0-3e799478e140",
     "name": "Network Administrator",
     "parentId": "."
   },
   {
-    "id": "c4c1c8ee-aff7-4b4d-867f-a1a171b0ee01",
+    "id": "d862a2e7-792f-4480-9eaf-b5bf829e40a9",
     "name": "Database Administrator",
     "parentId": "."
   },
   {
-    "id": "4b1b9f43-a6cc-464f-b143-052594902df9",
+    "id": "36ca39e0-9f4b-4b9b-9a70-4936535b0698",
     "name": "Cybersecurity Specialist",
     "parentId": "."
   },
   {
-    "id": "c0020700-6245-4d85-943a-97dc515ea4da",
+    "id": "e9dd5e51-2f8d-40ce-a7c8-f9bdbea87d10",
     "name": "ALL VACANCIES",
     "parentId": "."
   },
   {
-    "id": "bebd1b0c-8916-49d5-a837-d14843cafe13",
+    "id": "ad6b4c3a-650f-4d94-8996-46529d861d9b",
     "name": "JAVA",
-    "parentId": "809aac62-5b35-47a9-9c38-d78501cb0a11"
+    "parentId": "08c1bdd2-f465-438a-a859-182f9379bcf4"
   },
   {
-    "id": "047fee21-1e7b-4c49-944a-612388b8cda8",
+    "id": "8166a1b3-3259-4a17-ae4e-61d1fce9f623",
     "name": "Swift",
-    "parentId": "809aac62-5b35-47a9-9c38-d78501cb0a11"
+    "parentId": "08c1bdd2-f465-438a-a859-182f9379bcf4"
   },
   {
-    "id": "99360d8a-637d-4476-8c64-5f797ad120cb",
+    "id": "538129db-9aff-442b-b71e-264ac31f4504",
     "name": "Python",
-    "parentId": "809aac62-5b35-47a9-9c38-d78501cb0a11"
+    "parentId": "08c1bdd2-f465-438a-a859-182f9379bcf4"
   },
   {
-    "id": "c810394b-5fc8-438f-b8e7-a7cac0c51420",
+    "id": "edeb59da-2d88-4790-996e-48e993d3a39c",
     "name": "PHP",
-    "parentId": "809aac62-5b35-47a9-9c38-d78501cb0a11"
+    "parentId": "08c1bdd2-f465-438a-a859-182f9379bcf4"
   },
   {
-    "id": "eb8d1791-ba59-4472-81e6-7bbc261a972d",
+    "id": "50b7c17b-0693-484e-afcf-f2de390f0d46",
     "name": ".NET",
-    "parentId": "809aac62-5b35-47a9-9c38-d78501cb0a11"
+    "parentId": "08c1bdd2-f465-438a-a859-182f9379bcf4"
   },
   {
-    "id": "d3bb0d58-3b0d-4000-8334-5f601dc889e1",
+    "id": "48f0f93d-5b11-4238-9cf4-ffda9f302d68",
     "name": "Network design",
-    "parentId": "d7aede69-274f-4e53-a5e8-9e728a8ef395"
+    "parentId": "7ebc6da3-928a-4566-b0f0-3e799478e140"
   },
   {
-    "id": "17af1d27-1f83-4803-bdf8-7bfdef530a54",
+    "id": "7dc1e740-acb0-430b-9954-db7d3e2bd1ce",
     "name": "Network security",
-    "parentId": "d7aede69-274f-4e53-a5e8-9e728a8ef395"
+    "parentId": "7ebc6da3-928a-4566-b0f0-3e799478e140"
   },
   {
-    "id": "89241875-90b8-405c-bedc-34b3a2ae1a51",
+    "id": "319cea78-9296-46cd-9776-1b9b9f93a7a6",
     "name": "Network maintenance",
-    "parentId": "d7aede69-274f-4e53-a5e8-9e728a8ef395"
+    "parentId": "7ebc6da3-928a-4566-b0f0-3e799478e140"
+  },
+  {
+    "id": "4a8c0237-ce4c-4f62-89bd-70c889d121a4",
+    "name": "Data cleaning",
+    "parentId": "d862a2e7-792f-4480-9eaf-b5bf829e40a9"
+  },
+  {
+    "id": "52a1e1c4-d730-4329-a7a2-9e0d237d7092",
+    "name": "Data analysis",
+    "parentId": "d862a2e7-792f-4480-9eaf-b5bf829e40a9"
+  },
+  {
+    "id": "86324b8d-f134-46b4-b993-2b06478d210d",
+    "name": "Database designer",
+    "parentId": "d862a2e7-792f-4480-9eaf-b5bf829e40a9"
   },
   {
     "id": "d0c8b20e-fefe-4db9-871e-2c7d5e1fc68e",
